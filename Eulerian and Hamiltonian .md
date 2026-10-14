@@ -57,9 +57,9 @@ Hamiltonian but not Eulerian
 
 [commons.wikimedia.org](https://commons.wikimedia.org/wiki/File%3AComplete_graph_K4.svg)
 
-Example: \\(K_4\\), the complete graph on four vertices.
+Example: \$K_4\$, the complete graph on four vertices.
 
-A cycle can visit all four vertices exactly once. But every vertex has degree \\(3\\), which is odd, so it cannot have an Eulerian cycle.
+A cycle can visit all four vertices exactly once. But every vertex has degree \$3\$, which is odd, so it cannot have an Eulerian cycle.
 
 ## 4. The exam-ready theorem
 
@@ -68,6 +68,6 @@ For a finite, connected, undirected graph:
 - Eulerian cycle exists if and only if every vertex has even degree.
 - Hamiltonian cycle exists if every vertex can be included in a cycle that visits each vertex exactly once. There is no equivalent simple degree-parity test for all graphs.
 
-Some useful sufficient conditions for Hamiltonian cycles do exist, such as Dirac’s theorem: for a simple graph with \\(n\geq 3\\) vertices, if every vertex has degree at least \\(n/2\\), the graph is Hamiltonian.
+Some useful sufficient conditions for Hamiltonian cycles do exist, such as Dirac’s theorem: for a simple graph with \$n\geq 3\$ vertices, if every vertex has degree at least \$n/2\$, the graph is Hamiltonian.
 
 Bottom line: Eulerian is about using every edge; Hamiltonian is about visiting every vertex. They are related ideas, but they measure different properties of a graph.
