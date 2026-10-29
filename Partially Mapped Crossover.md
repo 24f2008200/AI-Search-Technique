@@ -1,3 +1,4 @@
+https://chatgpt.com/s/t_6ae34aa1c8208191a68b4185f5c99c7a
 # Partially Mapped Crossover (PMX) in Genetic Algorithms
 
 PMX is a crossover operator used in Genetic Algorithms for permutation problems, especially the Travelling Salesperson Problem (TSP).
