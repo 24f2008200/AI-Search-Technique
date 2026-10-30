@@ -252,3 +252,140 @@ That is why Beam Search is generally not complete and does not guarantee an opti
 If you share the original pseudocode or the definition of the third field (score), we can resolve exactly why Step 3 produces an empty OPEN list.
 
 &#x20;Show me the Beam Search tree diagram.
+
+Yes. This pseudocode explains the termination in your trace. In fact, it explains an important feature of Beam Search that was not apparent from the execution trace alone.
+
+Let us connect it to your Step 3.
+
+## 1. Understanding the termination condition
+
+The key lines are:
+
+```
+3  do bestEver ← N
+...
+8  N ← head OPEN     // best in new layer
+9  while h(N) is better than h(bestEver)
+10 return bestEver
+```
+
+The algorithm maintains a record called `bestEver`.
+
+- `bestEver` is the best node found so far.
+- `N` is the best node in the newly generated layer.
+- The algorithm continues only if the new layer has produced an improvement.
+
+In other words:
+
+\\[ h(N) \text{ must be better than } h(bestEver) \\]
+
+If there is no improvement, the algorithm terminates and returns `bestEver`.
+
+This is a form of hill climbing with a beam of width \\(w\\).
+
+## 2. Connecting it to your execution trace
+
+Your trace has:
+
+### Step 1
+
+Initial node:
+
+```
+11111, score = 3
+```
+
+New layer:
+
+```
+01111, score = 4
+11101, score = 4
+```
+
+Best new node has score 4.
+
+Since:
+
+\\[ 4 > 3 \\]
+
+the algorithm continues.
+
+`bestEver` becomes the previous best node, and the new layer is explored.
+
+### Step 2
+
+New layer:
+
+```
+01101, score = 5
+01101, score = 5
+```
+
+Since:
+
+\\[ 5 > 4 \\]
+
+the algorithm continues again.
+
+### Step 3
+
+New layer:
+
+```
+00101, score = 5
+01001, score = 5
+01100, score = 4
+11101, score = 4
+01111, score = 4
+```
+
+The best score in this layer is 5.
+
+Compare:
+
+\\[ h(N)=5 \\]
+
+\\[ h(bestEver)=5 \\]
+
+There is no improvement.
+
+Therefore:
+
+\\[ 5 \not> 5 \\]
+
+The `while` condition fails, and the algorithm terminates.
+
+It returns `bestEver`.
+
+## 3. Why is PATH empty in your trace?
+
+There is an important distinction here.
+
+Your pseudocode says:
+
+```
+10 return bestEver
+```
+
+It does not say that it returns an empty path.
+
+It returns the best state found so far, even if that state is not the goal.
+
+The `PATH []` in your execution trace may indicate that the returned node was not the goal, or that the trace records only successful goal paths.
+
+We would need the path-reconstruction convention to be certain.
+
+## 4. Two different termination conditions
+
+| Condition                                  | Meaning                      |
+| ------------------------------------------ | ---------------------------- |
+| OPEN contains goal node                    | Success: return the goal     |
+| New best score is not better than bestEver | Stop: no further improvement |
+
+The second condition is particularly important.
+
+Beam Search does not necessarily continue until OPEN becomes empty. It can terminate earlier when the best heuristic score stops improving.
+
+One subtle point: this pseudocode assumes that a higher heuristic value is better. If your course defines lower heuristic values as better, reverse the comparison.
+
+The key takeaway: Beam Search is not guaranteed to find the goal. It may stop at a local optimum because none of the candidates in the next layer improves upon the best state found so far.
