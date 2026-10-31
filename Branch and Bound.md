@@ -197,6 +197,7 @@ The remaining choices are forced:
 $$ D\rightarrow C\rightarrow A $$
 
 Our complete tour is:
+<img width="871" height="789" alt="image" src="https://github.com/user-attachments/assets/e3f1fa5e-b6fb-4708-a6af-567c618472e8" />
 
 COMPLETE TOUR
 
